@@ -1,5 +1,5 @@
 # elixir-phx-websocket-chat
-Web chat system written in Elixir / Phoenix
+Web chat system written in Elixir / Phoenix (for study)
 
 ## Screenshot
 
@@ -7,10 +7,9 @@ Web chat system written in Elixir / Phoenix
 
 ## How to Run
 ```sh
-git clone https://github.com/c18t/elixir-phx-websocket-chat.git
-cd elixir-phx-websocket-chat
+curl -L https://raw.githubusercontent.com/c18t/elixir-phx-websocket-chat/master/Dockerfile -O
 docker build -t elixir-phx-websocket-chat .
-docker run elixir-phx-websocket-chat -p 4000:4000
+docker run -d -p 4000:4000 elixir-phx-websocket-chat
 open http://localhost:4000/
 ```
 
