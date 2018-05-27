@@ -1,8 +1,7 @@
 FROM elixir:1.6.5-alpine
 
 # productionビルドを指定
-ENV MIX_ENV prod
-ENV NODE_ENV production
+ENV MIX_ENV=prod NODE_ENV=production
 
 # アプリフォルダ
 ENV APP_DIR /var/opt/app
@@ -12,8 +11,8 @@ ENV PATH ${PATH}:${APP_DIR}/_build/prod/rel/websocket_chat/bin
 # Listen port(CMD実行時に参照)
 ENV PORT 4000
 
-# DEV: ローカルのファイルをすべてコピー
-# COPY . ${APP_DIR}
+# DEV: ローカルのソースファイルをコピー
+COPY . ${APP_DIR}
 
 RUN set -x && \
 : "依存するパッケージをインストール" && \
@@ -24,8 +23,7 @@ RUN set -x && \
     yarn && \
 : "elixirユーザーを作成" && \
   adduser -D -s /bin/bash elixir && \
-: "アプリのディレクトリを作成" && \
-  mkdir -p ${APP_DIR} && \
+: "アプリディレクトリの所有者を変更" && \
   chown -R elixir:elixir ${APP_DIR}
 
 # ユーザーを変更
@@ -35,8 +33,6 @@ USER elixir
 WORKDIR ${APP_DIR}
 
 RUN set -x && \
-: "最新のソースを取得" && \
-  git clone --depth 1 https://github.com/c18t/elixir-phx-websocket-chat.git . && \
 : "アプリをビルド" && \
   mix local.hex --force && \
   mix local.rebar --force && \
@@ -45,10 +41,14 @@ RUN set -x && \
   yarn install && \
   yarn build && \
 : "アプリのリリースパッケージを配置" && \
-  mix release
+  mix release && \
+: "デフォルトのSECRET_KEY_BASEを生成" && \
+  echo export SECRET_KEY_BASE=$(cat /dev/urandom | base64 | fold -w 64 | head -1) >> ~/.bashrc
 
 # 公開ポート
 EXPOSE ${PORT}
 
 # アプリをフォアグラウンドで実行
-CMD websocket_chat foreground
+ENV BASH_ENV ~/.bashrc
+ENTRYPOINT [ "/bin/bash", "-c" ]
+CMD [ "websocket_chat foreground" ]
