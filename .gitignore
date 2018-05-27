@@ -13,9 +13,9 @@ erl_crash.dump
 # Alternatively, you may comment the line below and commit the
 # secrets files as long as you replace their contents by environment
 # variables.
-/config/*.secret.exs
+#/config/*.secret.exs
 
- Created by https://www.gitignore.io/api/vim,windows,macos,node
+## Created by https://www.gitignore.io/api/vim,windows,macos,node
 
 ### macOS ###
 *.DS_Store
