@@ -2,8 +2,10 @@ module.exports = {
 
   mode: 'development',
 
+  context: __dirname + "/lib/js", // rootにしたいパスを指定
+
   // メインとなるJavaScriptファイル（エントリーポイント）
-  entry: `./lib/js/app.js`,
+  entry: `./app.js`,
   
   // ファイルの出力設定
   output: {
