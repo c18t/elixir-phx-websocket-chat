@@ -24,11 +24,13 @@ module.exports = {
     filename: '[name].js',
   },
 
-  // Vueのビルドバージョンを明示的に指定
   resolve: {
-    extensions: ['*', '.js', '.ts', '.vue', '.json'],
+    // import時に探す拡張子
+    extensions: [ '.js', '.ts', '.vue', '.json' ],
     alias: {
-      'vue$': isProduction ? 'vue/dist/vue.runtime.esm.js' : 'vue/dist/vue.esm.js',
+      // Vueのビルドバージョンを明示的に指定
+      // 'vue$': isProduction ? 'vue/dist/vue.runtime.esm.js' : 'vue/dist/vue.esm.js',
+      'vue$': 'vue/dist/vue.esm.js',
     },
   },
 
@@ -67,6 +69,6 @@ module.exports = {
   // プラグイン設定
   plugins: [
     new VueLoaderPlugin(),
-    new ExtractTextPlugin(path.resolve(__dirname, './priv/static/css/style.css'))
+    new ExtractTextPlugin(path.resolve(__dirname, './priv/static/css/style.css')),
   ]
 };
