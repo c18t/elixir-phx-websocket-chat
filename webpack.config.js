@@ -13,7 +13,7 @@ module.exports = {
 
   // メインとなるJavaScriptファイル（エントリーポイント）
   entry: {
-    app: path.resolve(__dirname, './lib/js/main.ts'),
+    app: path.resolve(__dirname, './lib/js/index.ts'),
   },
 
   // ファイルの出力設定
@@ -29,7 +29,6 @@ module.exports = {
     extensions: [ '.js', '.ts', '.vue', '.json' ],
     alias: {
       // Vueのビルドバージョンを明示的に指定
-      // 'vue$': isProduction ? 'vue/dist/vue.runtime.esm.js' : 'vue/dist/vue.esm.js',
       'vue$': 'vue/dist/vue.esm.js',
     },
   },
