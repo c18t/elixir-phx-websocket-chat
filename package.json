@@ -14,12 +14,12 @@
     "start:server": "yarn watch",
     "start:client": "wait-on http://0.0.0.0:4000/ && opener http://0.0.0.0:4000/",
     "release:front": "webpack --optimize-minimize",
-    "release:back": "mix release",
+    "release:back": "mix phx.digest && mix release",
     "build": "npm-run-all -s build:*",
     "watch": "npm-run-all -p watch:*",
     "start": "npm-run-all -p start:*",
     "release": "cross-env-shell MIX_ENV=prod NODE_ENV=production \"npm-run-all -s release:*\"",
-    "clean": "rimraf ./_build"
+    "clean": "mix phx.digest.clean && rimraf ./priv/static/js/app.* && rimraf ./_build"
   },
   "dependencies": {
     "@types/jquery": "^3.3.2",
