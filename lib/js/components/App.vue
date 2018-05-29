@@ -64,8 +64,10 @@ export default class App extends Vue {
     })
 
     chan.on("new:msg", msg => {
-      $messages.append(this.messageTemplate(msg))
-      scrollTo(0, document.body.scrollHeight)
+      if (msg.user !== 'SYSTEM' || msg.body !== 'ping') {
+        $messages.append(this.messageTemplate(msg))
+        scrollTo(0, document.body.scrollHeight)
+      }
     })
 
     chan.on("user:entered", msg => {
