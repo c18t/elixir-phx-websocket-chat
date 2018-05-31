@@ -2,7 +2,7 @@
 Web chat system written in Elixir / Phoenix (for study)
 
 ## Screenshot
-![](.doc/screenshot.png)
+![](./doc/screenshot.png)
 
 ## Feature
 - SPA (Vue.js)
