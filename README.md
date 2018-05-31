@@ -2,8 +2,14 @@
 Web chat system written in Elixir / Phoenix (for study)
 
 ## Screenshot
+![](.doc/screenshot.png)
 
 ## Feature
+- SPA (Vue.js)
+- Elixir / PhoenixでWebSocketによるリアルタイムチャット
+- 「とりあえず同時にアクセスしている人すべてに発言が届くようであればOK」というシンプルな思想
+- 部屋は1つだけ
+- 過去の発言は見えません
 
 ## How to Run
 ```sh
