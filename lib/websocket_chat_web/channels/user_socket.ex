@@ -5,7 +5,8 @@ defmodule WebsocketChatWeb.UserSocket do
   channel "rooms:*", WebsocketChatWeb.RoomChannel
 
   ## Transports
-  transport :websocket, Phoenix.Transports.WebSocket
+  transport :websocket, Phoenix.Transports.WebSocket,
+    serializer: WebsocketChatWeb.Transports.MessagePackSerializer
   # transport :longpoll, Phoenix.Transports.LongPoll
 
   # Socket params are passed from the client and can

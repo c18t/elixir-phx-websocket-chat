@@ -29,6 +29,7 @@ import Vue from 'vue'
 import { Component, Emit, Inject, Model, Prop, Provide, Watch } from 'vue-property-decorator'
 import $ from 'jquery'
 import { Socket } from "phoenix"
+import binarySocket from "../binarySocket"
 
 @Component({ name: 'App' })
 export default class App extends Vue {
@@ -38,6 +39,7 @@ export default class App extends Vue {
     let socket = new Socket("/socket", {
       logger: ((kind: number, msg: string, data: any) => { console.log(`${kind}: ${msg}`, data) })
     })
+    socket = binarySocket.convertToBinary(socket)
 
     socket.connect({user_id: "123"})
     var $status    = $("#status")
