@@ -37,6 +37,6 @@ docker run -d -p 4000:4000 --env-file .env elixir-phx-websocket-chat
 ## License
 [WTFPL](./LICENSE)
 
-## Auther
+## Author
 Uchi (/ɯ̹t͡ɕʲi/)
   - Twitter: [@c18t](https://twitter.com/c18t)
